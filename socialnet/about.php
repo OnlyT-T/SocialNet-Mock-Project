@@ -7,6 +7,7 @@ if (!isset($_SESSION['user_id'])) {
     exit;
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,12 +23,12 @@ if (!isset($_SESSION['user_id'])) {
     <div class="card">
         <h2>&#8505;&#65039; About This Project</h2>
         <div class="about-info">
-            <p>&#128100; <span>Student Name:</span> Your Full Name Here</p>
-            <p>&#127243; <span>Student Number:</span> 123456789</p>
+            <p><span>Student Name:</span> <?= htmlspecialchars($_SESSION['fullname']) ?></p>
+            <p><span>Student Number:</span> 123456789</p>
         </div>
         <hr style="margin:1.2rem 0; border:none; border-top:1px solid #e4e6eb;">
         <p style="color:#65676b; font-size:.92rem;">
-            SocialNet is a mock social network web application built with PHP, MySQL, Nginx, and Linux.
+            @SocialNet is a mock social network web application built with PHP, MySQL, Nginx, and Linux.
         </p>
     </div>
 </div>

@@ -34,7 +34,7 @@ $db->close();
     <div class="card">
         <h2>&#127968; Welcome back!</h2>
         <div class="profile-header">
-            <div class="profile-avatar-lg"><?= htmlspecialchars(mb_substr($_SESSION['fullname'], 0, 1)) ?></div>
+            <div class="profile-avatar-lg"><?= htmlspecialchars(substr($_SESSION['fullname'], 0, 1)) ?></div>
             <div class="profile-meta">
                 <h2><?= htmlspecialchars($_SESSION['fullname']) ?></h2>
                 <p class="username-tag">@<?= htmlspecialchars($_SESSION['username']) ?></p>

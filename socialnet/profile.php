@@ -11,8 +11,10 @@ require_once __DIR__ . '/../db_config.php';
 
 $db = get_db();
 
+$owner_name = isset($_GET['owner']) ? trim($_GET['owner']) : '';
+
 // Determine whose profile to show
-if (isset($_GET['owner']) && trim($_GET['owner']) !== '') {
+if ($owner_name !== '') {
     $owner_name = trim($_GET['owner']);
     $stmt = $db->prepare('SELECT id, username, fullname, description FROM account WHERE username = ?');
     $stmt->bind_param('s', $owner_name);
@@ -48,9 +50,9 @@ $is_own = ($owner['id'] === $_SESSION['user_id']);
 <div class="page-container">
     <div class="card">
         <div class="profile-header">
-            <div class="profile-avatar-lg"><?= htmlspecialchars(mb_substr($owner['fullname'], 0, 1)) ?></div>
+            <div class="profile-avatar-lg"><?= htmlspecialchars(substr($owner['fullname'], 0, 1)) ?></div>
             <div class="profile-meta">
-                <h2><?= htmlspecialchars($owner['fullname']) ?></h2>
+                <h2 style="margin: 0; line-height: 1.5;"><?= htmlspecialchars($owner['fullname']) ?></h2>
                 <p class="username-tag">@<?= htmlspecialchars($owner['username']) ?></p>
                 <?php if ($is_own): ?>
                     <span style="font-size:.8rem; background:#e7f3ff; color:#1877f2; padding:.2rem .55rem; border-radius:4px; font-weight:600;">You</span>
@@ -59,9 +61,7 @@ $is_own = ($owner['id'] === $_SESSION['user_id']);
         </div>
 
         <h2 style="font-size:1rem; color:#65676b; margin-bottom:.7rem;">&#128221; About</h2>
-        <div class="description-box">
-            <?php if (trim($owner['description'] ?? '') !== ''): ?>
-                <?= nl2br(htmlspecialchars($owner['description'])) ?>
+        <div class="description-box"><?php if (trim($owner['description'] ?? '') !== ''): ?><?= nl2br(htmlspecialchars($owner['description'])) ?>
             <?php else: ?>
                 <span style="color:#bbb; font-style:italic;">
                     <?= $is_own ? 'You haven\'t written anything yet. Go to Settings to add a description.' : 'This user hasn\'t written anything yet.' ?>

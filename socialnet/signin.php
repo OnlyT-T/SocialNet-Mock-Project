@@ -32,6 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['user_id']  = $user['id'];
             $_SESSION['username'] = $user['username'];
             $_SESSION['fullname'] = $user['fullname'];
+
             header('Location: /socialnet/index.php');
             exit;
         } else {

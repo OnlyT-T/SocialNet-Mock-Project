@@ -1,8 +1,8 @@
 <?php
 // db_config.php — shared database connection
 define('DB_HOST', 'localhost');
-define('DB_USER', 'root');       // change to your MySQL user
-define('DB_PASS', '');           // change to your MySQL password
+define('DB_USER', 'socialnet');
+define('DB_PASS', '123');
 define('DB_NAME', 'socialnet');
 
 function get_db(): mysqli {

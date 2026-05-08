@@ -83,50 +83,163 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             border-radius: 4px;
             text-transform: uppercase;
             margin-bottom: 1.4rem;
+	    margin-top: 0.5rem;
+        }
+
+        /* ── Enhanced input fields ── */
+        .input-wrapper {
+            position: relative;
+        }
+        .input-wrapper .input-icon {
+            position: absolute;
+            left: .85rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1rem;
+            pointer-events: none;
+            opacity: .55;
+        }
+        .input-wrapper input {
+            padding-left: 2.5rem !important;
+            height: 46px;
+            border: 2px solid #e0e0e0 !important;
+            border-radius: 8px !important;
+            font-size: .95rem !important;
+            background: #fafafa !important;
+            transition: border-color .2s, box-shadow .2s, background .2s !important;
+            color: #1a1a2e !important;
+        }
+        .input-wrapper input::placeholder { color: #bbb; }
+        .input-wrapper input:focus {
+            border-color: #c0392b !important;
+            background: #fff !important;
+            box-shadow: 0 0 0 3px rgba(192,57,43,.12) !important;
+            outline: none !important;
+        }
+        .form-group label {
+            font-size: .8rem !important;
+            font-weight: 700 !important;
+            letter-spacing: .4px;
+            text-transform: uppercase;
+            color: #000000 !important;
+            margin-bottom: .4rem !important;
+        }
+        .form-group { margin-bottom: 1.15rem !important; }
+
+        /* Submit button */
+        .btn-admin {
+            width: 100%;
+            height: 46px;
+            background: #c0392b;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: .4px;
+            cursor: pointer;
+            margin-top: .4rem;
+            transition: background .2s, transform .1s, box-shadow .2s;
+            box-shadow: 0 3px 10px rgba(192,57,43,.35);
+        }
+        .btn-admin:hover {
+            background: #a93226;
+            box-shadow: 0 5px 14px rgba(192,57,43,.45);
+        }
+        .btn-admin:active { transform: scale(.98); }
+
+        /* ── Toast notification ── */
+        .toast {
+            position: fixed;
+            top: 1.5rem;
+            right: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: .75rem;
+            background: #23983e;
+            color: #fff;
+            padding: .85rem 1.3rem;
+            border-radius: 10px;
+            box-shadow: 0 6px 20px rgba(0,0,0,.25);
+            font-size: 1.0rem;
+            font-weight: 600;
+            z-index: 9999;
+            animation: slideIn .35s ease, fadeOut .5s ease 2.8s forwards;
+            pointer-events: none;
+        }
+        .toast-icon {
+            font-size: 1.3rem;
+            line-height: 1;
+        }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(60px); }
+            to   { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes fadeOut {
+            from { opacity: 1; transform: translateX(0); }
+            to   { opacity: 0; transform: translateX(60px); }
         }
     </style>
 </head>
 <body>
 <div class="admin-wrapper">
     <div class="admin-card">
-        <h1>&#128274; Admin Panel</h1>
+        <h1 style="font-size: 36px">&#128274;ADMIN PANEL</h1>
         <span class="admin-badge">SocialNet</span>
 
         <?php if ($error): ?>
             <div class="alert alert-error"><?= htmlspecialchars($error) ?></div>
         <?php endif; ?>
-        <?php if ($success): ?>
-            <div class="alert alert-success"><?= htmlspecialchars($success) ?></div>
-        <?php endif; ?>
 
         <form method="POST" action="/admin/newuser.php">
             <div class="form-group">
                 <label for="username">Username</label>
-                <input type="text" id="username" name="username"
-                       value="<?= htmlspecialchars($_POST['username'] ?? '') ?>"
-                       placeholder="e.g. johndoe" autocomplete="off" required>
+                <div class="input-wrapper">
+                    <span class="input-icon">&#64;</span>
+                    <input type="text" id="username" name="username"
+                           placeholder="e.g. nguyenvana" autocomplete="off" required>
+                </div>
             </div>
             <div class="form-group">
                 <label for="fullname">Full Name</label>
-                <input type="text" id="fullname" name="fullname"
-                       value="<?= htmlspecialchars($_POST['fullname'] ?? '') ?>"
-                       placeholder="e.g. John Doe" required>
+                <div class="input-wrapper">
+                    <span class="input-icon">&#128100;</span>
+                    <input type="text" id="fullname" name="fullname"
+                           placeholder="e.g. Nguyen Van A" required>
+                </div>
             </div>
             <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" id="password" name="password"
-                       placeholder="Min. 6 characters" required>
+                <div class="input-wrapper">
+                    <span class="input-icon">&#128274;</span>
+                    <input type="password" id="password" name="password"
+                           placeholder="Min. 6 characters" required>
+                </div>
             </div>
             <div class="form-group">
                 <label for="confirm">Confirm Password</label>
-                <input type="password" id="confirm" name="confirm"
-                       placeholder="Repeat password" required>
+                <div class="input-wrapper">
+                    <span class="input-icon">&#10003;</span>
+                    <input type="password" id="confirm" name="confirm"
+                           placeholder="Repeat password" required>
+                </div>
             </div>
-            <button type="submit" class="btn btn-full" style="background:#c0392b;">
-                Create User
-            </button>
+
+            <button type="submit" class="btn-admin">&#43; Create User</button>
         </form>
     </div>
 </div>
+<?php if ($success): ?>
+<div class="toast" id="toast">
+    <span class="toast-icon">&#10004;</span>
+    <span>Register Success!</span>
+</div>
+<script>
+    setTimeout(() => {
+        const t = document.getElementById('toast');
+        if (t) t.remove();
+    }, 3300);
+</script>
+<?php endif; ?>
 </body>
 </html>

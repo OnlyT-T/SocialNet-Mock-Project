@@ -1,0 +1,220 @@
+/* style.css — SocialNet shared styles */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #f0f2f5;
+    color: #1c1e21;
+    min-height: 100vh;
+}
+
+/* ── Menubar ─────────────────────────────────────── */
+.menubar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #1877f2;
+    padding: 0 2rem;
+    height: 56px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 6px rgba(0,0,0,.2);
+}
+.menubar-brand {
+    color: #fff;
+    font-size: 1.3rem;
+    font-weight: 700;
+    letter-spacing: .5px;
+}
+.menubar-links {
+    list-style: none;
+    display: flex;
+    gap: 0.25rem;
+}
+.menubar-links a {
+    color: rgba(255,255,255,.88);
+    text-decoration: none;
+    padding: 0.45rem 0.9rem;
+    border-radius: 6px;
+    font-size: .95rem;
+    transition: background .15s;
+}
+.menubar-links a:hover,
+.menubar-links a.active {
+    background: rgba(255,255,255,.18);
+    color: #fff;
+}
+.menubar-links a.signout-link { color: #ffd6d6; }
+.menubar-links a.signout-link:hover { background: rgba(255,80,80,.25); color:#fff; }
+
+/* ── Page wrapper ────────────────────────────────── */
+.page-container {
+    max-width: 860px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+/* ── Card ────────────────────────────────────────── */
+.card {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 1px 4px rgba(0,0,0,.12);
+    padding: 1.8rem 2rem;
+    margin-bottom: 1.5rem;
+}
+.card h2 {
+    font-size: 1.25rem;
+    margin-bottom: 1.1rem;
+    color: #1877f2;
+    border-bottom: 2px solid #e4e6eb;
+    padding-bottom: .55rem;
+}
+
+/* ── Forms ───────────────────────────────────────── */
+.form-group { margin-bottom: 1rem; }
+.form-group label {
+    display: block;
+    font-size: .875rem;
+    font-weight: 600;
+    margin-bottom: .35rem;
+    color: #444;
+}
+.form-group input[type="text"],
+.form-group input[type="password"],
+.form-group textarea {
+    width: 100%;
+    padding: .6rem .85rem;
+    border: 1.5px solid #ccd0d5;
+    border-radius: 6px;
+    font-size: .95rem;
+    transition: border-color .2s;
+    background: #f7f8fa;
+}
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #1877f2;
+    background: #fff;
+}
+.form-group textarea { resize: vertical; min-height: 110px; }
+
+.btn {
+    display: inline-block;
+    padding: .6rem 1.5rem;
+    background: #1877f2;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background .2s;
+    text-decoration: none;
+}
+.btn:hover { background: #145dbf; }
+.btn-full { width: 100%; text-align: center; }
+.btn-secondary { background: #e4e6eb; color: #050505; }
+.btn-secondary:hover { background: #d0d2d8; }
+
+/* ── Alerts ──────────────────────────────────────── */
+.alert {
+    padding: .75rem 1rem;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    font-size: .92rem;
+}
+.alert-error   { background: #fdecea; color: #b71c1c; border: 1px solid #f5c6cb; }
+.alert-success { background: #e8f5e9; color: #1b5e20; border: 1px solid #a5d6a7; }
+
+/* ── User list ───────────────────────────────────── */
+.user-list { list-style: none; }
+.user-list li {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: .7rem 0;
+    border-bottom: 1px solid #f0f2f5;
+}
+.user-list li:last-child { border-bottom: none; }
+.user-avatar {
+    width: 42px; height: 42px;
+    border-radius: 50%;
+    background: #1877f2;
+    color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 1.1rem;
+    flex-shrink: 0;
+    text-transform: uppercase;
+}
+.user-info-block { flex: 1; }
+.user-info-block .uname { font-weight: 600; }
+.user-info-block .fname { font-size: .85rem; color: #65676b; }
+
+/* ── Profile info ────────────────────────────────── */
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: 1.4rem;
+    margin-bottom: 1.4rem;
+}
+.profile-avatar-lg {
+    width: 80px; height: 80px;
+    border-radius: 50%;
+    background: #1877f2;
+    color: #fff;
+    font-size: 2.2rem; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    text-transform: uppercase;
+    flex-shrink: 0;
+}
+.profile-meta h2 { color: #050505; border: none; padding: 0; margin: 0; line-height: 1.5; font-size: 1.5rem; }
+.profile-meta .username-tag { color: #65676b; font-size: .9rem; line-height: 1.5; margin-bottom: 5px;}
+
+.description-box {
+    background: #f7f8fa;
+    border-radius: 8px;
+    padding: 1.2rem 1.5rem; /* Tăng padding để text có khoảng thở */
+    color: #444;
+    min-height: 80px;      /* Tăng nhẹ chiều cao tối thiểu */
+    line-height: 1.5;
+    /* white-space: pre-wrap; */
+    
+    /* Điều chỉnh lại Flexbox */
+    display: flex;
+    text-align: left;       /* Căn lề trái cho văn bản */
+}
+
+/* ── Sign-in / Auth centered layout ─────────────── */
+.auth-wrapper {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f0f2f5;
+}
+.auth-card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0,0,0,.15);
+    padding: 2.5rem 2.2rem;
+    width: 100%;
+    max-width: 420px;
+}
+.auth-card h1 {
+    text-align: center;
+    color: #1877f2;
+    font-size: 2rem;
+    margin-bottom: .25rem;
+}
+.auth-card .tagline {
+    text-align: center;
+    color: #65676b;
+    margin-bottom: 1.8rem;
+    font-size: .95rem;
+}
+
+/* ── About page ──────────────────────────────────── */
+.about-info p { margin-bottom: .5rem; font-size: 1rem; }
+.about-info span { font-weight: 600; }
