@@ -24,7 +24,7 @@ if (!isset($_SESSION['user_id'])) {
         <h2>&#8505;&#65039; About This Project</h2>
         <div class="about-info">
             <p><span>Student Name:</span> <?= htmlspecialchars($_SESSION['fullname']) ?></p>
-            <p><span>Student Number:</span> 123456789</p>
+            <p><span>Student Number:</span> 1694593</p>
         </div>
         <hr style="margin:1.2rem 0; border:none; border-top:1px solid #e4e6eb;">
         <p style="color:#65676b; font-size:.92rem;">
