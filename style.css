@@ -138,6 +138,7 @@ body {
     border-bottom: 1px solid #f0f2f5;
 }
 .user-list li:last-child { border-bottom: none; }
+.user-list li .actions { display: flex; gap: .4rem; align-items:center; flex-wrap: wrap; }
 .user-avatar {
     width: 42px; height: 42px;
     border-radius: 50%;
