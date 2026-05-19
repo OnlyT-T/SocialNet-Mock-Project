@@ -179,10 +179,10 @@ function action_form(int $other_id, string $action, string $label, string $btn_c
                 <span>&#128268; Strangers</span>
                 <span class="badge"><?= count($strangers) ?></span>
             </p>
-            <ul class="user-list" style="margin-bottom:1.2rem;">
+            <ul class="user-list" style="margin-bottom:1.5rem">
                 <?php foreach ($strangers as $u): ?>
                 <li>
-                    <div class="user-avatar"><?= htmlspecialchars(mb_substr($u['fullname'], 0, 1)) ?></div>
+                    <div class="user-avatar"><?= htmlspecialchars(substr($u['fullname'], 0, 1)) ?></div>
                     <div class="user-info-block">
                         <div class="uname"><?= htmlspecialchars($u['fullname']) ?></div>
                         <div class="fname">@<?= htmlspecialchars($u['username']) ?></div>
@@ -204,7 +204,7 @@ function action_form(int $other_id, string $action, string $label, string $btn_c
             <ul class="user-list" style="margin-bottom:1.2rem;">
                 <?php foreach ($pending_sent as $u): ?>
                 <li>
-                    <div class="user-avatar"><?= htmlspecialchars(mb_substr($u['fullname'], 0, 1)) ?></div>
+                    <div class="user-avatar"><?= htmlspecialchars(substr($u['fullname'], 0, 1)) ?></div>
                     <div class="user-info-block">
                         <div class="uname"><?= htmlspecialchars($u['fullname']) ?></div>
                         <div class="fname">@<?= htmlspecialchars($u['username']) ?></div>
@@ -236,7 +236,7 @@ function action_form(int $other_id, string $action, string $label, string $btn_c
             <ul class="user-list">
                 <?php foreach ($incoming as $u): ?>
                 <li>
-                    <div class="user-avatar"><?= htmlspecialchars(mb_substr($u['fullname'], 0, 1)) ?></div>
+                    <div class="user-avatar"><?= htmlspecialchars(substr($u['fullname'], 0, 1)) ?></div>
                     <div class="user-info-block">
                         <div class="uname"><?= htmlspecialchars($u['fullname']) ?></div>
                         <div class="fname">@<?= htmlspecialchars($u['username']) ?></div>
@@ -264,7 +264,7 @@ function action_form(int $other_id, string $action, string $label, string $btn_c
             <ul class="user-list">
                 <?php foreach ($friends as $u): ?>
                 <li>
-                    <div class="user-avatar"><?= htmlspecialchars(mb_substr($u['fullname'], 0, 1)) ?></div>
+                    <div class="user-avatar"><?= htmlspecialchars(substr($u['fullname'], 0, 1)) ?></div>
                     <div class="user-info-block">
                         <div class="uname"><?= htmlspecialchars($u['fullname']) ?></div>
                         <div class="fname">@<?= htmlspecialchars($u['username']) ?></div>

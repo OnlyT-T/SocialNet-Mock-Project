@@ -54,6 +54,11 @@ body {
     max-width: 860px;
     margin: 2rem auto;
     padding: 0 1rem;
+    min-height: 100vh;
+    height: auto;
+    padding-bottom: 50px;
+
+    #overflow-y: auto;
 }
 
 /* ── Card ────────────────────────────────────────── */
@@ -63,6 +68,9 @@ body {
     box-shadow: 0 1px 4px rgba(0,0,0,.12);
     padding: 1.8rem 2rem;
     margin-bottom: 1.5rem;
+
+    height: auto;
+    overflow: visible;
 }
 .card h2 {
     font-size: 1.25rem;
@@ -150,7 +158,7 @@ body {
     text-transform: uppercase;
 }
 .user-info-block { flex: 1; }
-.user-info-block .uname { font-weight: 600; }
+.user-info-block .uname { font-weight: 300px; }
 .user-info-block .fname { font-size: .85rem; color: #65676b; }
 
 /* ── Profile info ────────────────────────────────── */
