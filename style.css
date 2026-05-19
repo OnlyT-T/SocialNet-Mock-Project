@@ -69,8 +69,8 @@ body {
     padding: 1.8rem 2rem;
     margin-bottom: 1.5rem;
 
-    height: auto;
-    overflow: visible;
+    #height: auto;
+    #overflow: visible;
 }
 .card h2 {
     font-size: 1.25rem;
@@ -158,7 +158,7 @@ body {
     text-transform: uppercase;
 }
 .user-info-block { flex: 1; }
-.user-info-block .uname { font-weight: 300px; }
+.user-info-block .uname { font-weight: 600px; }
 .user-info-block .fname { font-size: .85rem; color: #65676b; }
 
 /* ── Profile info ────────────────────────────────── */
