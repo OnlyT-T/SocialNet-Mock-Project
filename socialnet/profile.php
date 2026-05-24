@@ -37,7 +37,7 @@ if (!$owner) {
 $is_own = ((int)$owner['id'] === $me);
 
 // ── Access control: only own profile OR accepted friends ────────────────
-$is_friend = false;
+/*$is_friend = false;
 if (!$is_own) {
     $other_id = (int)$owner['id'];
     $stmt = $db->prepare('
@@ -59,7 +59,7 @@ $db->close();
 if (!$is_own && !$is_friend) {
     header('Location: /socialnet/index.php');
     exit;
-}
+} */
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -89,8 +89,8 @@ if (!$is_own && !$is_friend) {
 
         <h2 style="font-size:1rem; color:#65676b; margin-bottom:.7rem;">&#128221; About</h2>
         <div class="description-box">
-            <?php if (trim($owner['description'] ?? '') !== ''): ?>
-                <?= nl2br(htmlspecialchars($owner['description'])) ?>
+	    <?php if (trim($owner['description'] ?? '') !== ''): ?>
+		<?= nl2br($owner['description']) ?>
             <?php else: ?>
                 <span style="color:#bbb; font-style:italic;">
                     <?= $is_own

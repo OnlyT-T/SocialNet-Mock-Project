@@ -12,23 +12,25 @@ require_once __DIR__ . '/../db_config.php';
 $error = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $username = trim($_POST['username'] ?? '');
+    $username = $_POST['username'] ?? '';
     $password = $_POST['password'] ?? '';
 
     if ($username === '' || $password === '') {
         $error = 'Please enter both username and password.';
     } else {
-        $db   = get_db();
-        $stmt = $db->prepare('SELECT id, username, fullname, password FROM account WHERE username = ?');
-        $stmt->bind_param('s', $username);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $user   = $result->fetch_assoc();
-        $stmt->close();
-        $db->close();
+	$db = get_db();
+	
+	$query = "SELECT * FROM account WHERE username = '" . $username . "' AND password = '" . $password . "'";
 
-        if ($user && password_verify($password, $user['password'])) {
-            session_regenerate_id(true);
+	//var_dump($query);
+
+	$result = $db->query($query);
+
+	//var_dump($result);
+	//die();
+
+        if ($result && $result->num_rows > 0) {
+            $user = $result->fetch_assoc();
             $_SESSION['user_id']  = $user['id'];
             $_SESSION['username'] = $user['username'];
             $_SESSION['fullname'] = $user['fullname'];
@@ -37,7 +39,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit;
         } else {
             $error = 'Invalid username or password.';
-        }
+	}
+	$db->close();
     }
 }
 ?>

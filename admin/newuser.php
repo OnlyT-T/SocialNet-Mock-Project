@@ -29,9 +29,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($stmt->num_rows > 0) {
             $error = "Username \"$username\" is already taken.";
         } else {
-            $hashed = password_hash($password, PASSWORD_BCRYPT);
+            //$hashed = password_hash($password, PASSWORD_BCRYPT);
             $ins    = $db->prepare('INSERT INTO account (username, fullname, password) VALUES (?, ?, ?)');
-            $ins->bind_param('sss', $username, $fullname, $hashed);
+            $ins->bind_param('sss', $username, $fullname, $password);
             if ($ins->execute()) {
                 $success = "User \"$username\" created successfully!";
             } else {
